@@ -10,7 +10,7 @@ import houston from "./houston.theme.json";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://awesomelandingpage.com",
+	site: "https://www.awesomelandingpage.com",
 	integrations: [
 		tailwind({
 			applyBaseStyles: false,
