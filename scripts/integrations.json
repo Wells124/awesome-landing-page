@@ -47,7 +47,6 @@
 	"blocklist": [
 		"@advanced-astro/capo",
 		"@astrojs/db",
-		"@astrojs/studio",
 		"@astrojs/turbolinks",
 		"@astrojs/og",
 		"astro-zdog",
@@ -114,9 +113,6 @@
 		},
 		"@astrojs/mdx": {
 			"image": "/assets/integrations/mdx.svg"
-		},
-		"@astrojs/netlify": {
-			"image": "/assets/integrations/netlify.svg"
 		},
 		"@astrojs/node": {
 			"image": "/assets/integrations/node.svg"
