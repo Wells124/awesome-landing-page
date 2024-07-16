@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import astroExpressiveCode from "astro-expressive-code";
 import { defineConfig } from "astro/config";
 import vercel from '@astrojs/vercel/serverless'
+import robotsTxt from 'astro-robots-txt'
 import houston from "./houston.theme.json";
 
 
@@ -22,6 +23,7 @@ export default defineConfig({
 		}),
 		mdx(),
 		sitemap(),
+		robotsTxt(),
 	],
 	image: {
 		domains: ["v1.screenshot.11ty.dev", "storage.googleapis.com"],

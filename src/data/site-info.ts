@@ -17,6 +17,7 @@ export type SiteInfo = {
 		alt: string;
 	};
 	socialLinks: SocialLink[];
+	googleAnalyticsId: string
 };
 
 const siteInfo: SiteInfo = {
@@ -51,6 +52,7 @@ const siteInfo: SiteInfo = {
 			href: "https://github.com/wujieli0207/awesome-landing-page/",
 		},
 	],
+	googleAnalyticsId: 'G-ZS7QW21DKN',
 };
 
 export default siteInfo;
