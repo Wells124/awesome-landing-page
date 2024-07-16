@@ -1,0 +1,26 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" class="">
+  <rect id="r9" width="512" height="512" x="0" y="0" rx="128" fill="#0F1015" stroke="#FFFFFF" stroke-width="0"
+    stroke-opacity="100%" paint-order="stroke"></rect>
+  <clipPath id="clip">
+    <use xlink:href="#r9"></use>
+  </clipPath>
+  <defs>
+    <linearGradient id="ra" gradientUnits="userSpaceOnUse" gradientTransform="rotate(180)"
+      style="transform-origin: center center;">
+      <stop stop-color="#0F1015"></stop>
+      <stop offset="1" stop-color="#0F1015"></stop>
+    </linearGradient>
+    <radialGradient id="rb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(256) rotate(90) scale(512)">
+      <stop stop-color="white"></stop>
+      <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs><svg t="1721083770169" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    p-id="18773" xmlns:xlink="http://www.w3.org/1999/xlink" width="352" height="352" x="80" y="80"
+    alignment-baseline="middle" style="color: rgb(255, 255, 255);">
+    <path
+      d="M798.72 389.12l51.2-112.64L962.56 225.28l-112.64-51.2L798.72 61.44l-51.2 112.64L634.88 225.28l112.64 51.2L798.72 389.12zM798.72 634.88l-51.2 112.64L634.88 798.72l112.64 51.2L798.72 962.56l51.2-112.64L962.56 798.72l-112.64-51.2L798.72 634.88zM491.52 409.6L389.12 184.32 286.72 409.6 61.44 512 286.72 614.4 389.12 839.68l102.4-225.28 225.28-102.4-225.28-102.4z m-61.8496 142.9504L389.12 641.8432l-40.5504-89.2928-89.2928-40.5504 89.2928-40.5504L389.12 382.1568l40.5504 89.2928 89.2928 40.5504-89.2928 40.5504z"
+      fill="#dbdbdb" p-id="18774"></path>
+  </svg>
+</svg>

@@ -1,0 +1,130 @@
+---
+import siteInfo from '~/data/site-info.js'
+import NewsLetterSignup from './NewsLetterSignup.astro'
+import SocialLinks from './SocialLinks.astro'
+
+interface Props {
+  bgClass?: string
+}
+
+const { bgClass = 'bg-dark' } = Astro.props
+
+type Link = {
+  href: string
+  label: string
+}
+
+type LinkGroup = {
+  title: string
+  links: Link[]
+}
+
+const groups: LinkGroup[] = [
+  {
+    title: 'Resources',
+    links: [
+      {
+        label: 'Docs',
+        href: 'https://docs.astro.build/en/getting-started/',
+      },
+      { label: 'Themes', href: '/themes/' },
+      { label: 'Showcase', href: '/showcase/' },
+      { label: 'Integrations', href: '/integrations/' },
+      { label: 'Starter templates', href: 'https://astro.new/' },
+    ],
+  },
+  {
+    title: 'Ecosystem',
+    links: [
+      { label: 'Studio', href: 'https://studio.astro.build/' },
+      { label: 'Community', href: 'https://community.astro.build' },
+      {
+        label: 'Contributing',
+        href: 'https://github.com/withastro/astro/blob/main/CONTRIBUTING.md',
+      },
+    ],
+  },
+  {
+    title: 'About',
+    links: [
+      { label: 'Press', href: '/press/' },
+      { label: 'Telemetry', href: '/telemetry/' },
+      { label: 'Partner with us', href: '/partnerships/' },
+    ],
+  },
+  {
+    title: 'More',
+    links: [
+      { label: 'Blog', href: '/blog/' },
+      { label: 'Wallpapers', href: '/wallpapers/' },
+      { label: 'Swag Shop', href: 'https://shop.astro.build' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy Policy', href: '/privacy/' },
+      { label: 'Terms of Service', href: '/terms/' },
+    ],
+  },
+]
+
+const socialLinks = siteInfo.socialLinks
+const siteName = siteInfo.name
+---
+
+<footer class:list={['w-full border-t border-astro-dark-100/20', bgClass]}>
+  <div class="w-full max-w-screen-2xl mx-auto px-4 sm:px-8">
+    <!-- <nav
+			aria-label="Secondary"
+			class="flex flex-col lg:flex-row links-start justify-between gap-12 py-8 md:py-12"
+		>
+			<NewsLetterSignup />
+
+			<div
+				class="grid grid-cols-2 gap-12 sm:flex sm:flex-wrap sm:gap-16 lg:gap-20"
+			>
+				{
+					groups.map(({ title, links }, index) => (
+						<section class="group flex flex-col">
+							<h2
+								id={`footerHeading${index}`}
+								class="mb-4 label-base leading-none text-white"
+							>
+								{title}
+							</h2>
+							<ul
+								aria-labelledby={`footerHeading${index}`}
+								class="flex flex-col gap-2"
+							>
+								{links.map(({ href, label }) => (
+									<li>
+										<a
+											href={href}
+											class="whitespace-nowrap link"
+										>
+											{label}
+										</a>
+									</li>
+								))}
+							</ul>
+						</section>
+					))
+				}
+			</div>
+		</nav> -->
+    <!-- <hr class="border-astro-gray-500" /> -->
+    <nav
+      aria-label="Legal"
+      class="py-8 flex flex-col-reverse sm:flex-row items-center justify-between gap-4"
+    >
+      <div class="flex items-center gap-4">
+        &copy; {new Date().getFullYear()}&nbsp; {siteName} &nbsp;
+        <a class="link" target="_blank" href="https://wujieli.com">
+          Written by Mr.WujieLi</a
+        >
+      </div>
+      <SocialLinks links={socialLinks} />
+    </nav>
+  </div>
+</footer>

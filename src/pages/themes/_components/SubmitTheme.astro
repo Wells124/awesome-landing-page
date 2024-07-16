@@ -1,0 +1,19 @@
+---
+import CatalogSubmitCallout, {
+  type Props as CalloutProps,
+} from '~/components/CatalogSubmitCallout.astro'
+
+export type Props = Omit<CalloutProps, 'slot' | 'title' | 'cta'>
+
+const { ...attrs } = Astro.props
+---
+
+<CatalogSubmitCallout
+  title="Submit a theme"
+  cta={{ href: '/', text: 'Comming soon' }}
+  {...attrs}
+>
+  Anyone can submit a theme to awesome landing page.
+  <!-- If you have questions about building your own theme, join our
+	community on <a class="link link-underline" href="/chat">Discord</a>! -->
+</CatalogSubmitCallout>
