@@ -1,0 +1,28 @@
+{
+  "home": {
+    "title": "探索最好的 landing page 模板",
+    "filter": {
+      "title": "筛选",
+      "filterType": {
+        "Categories": "类别",
+        "Technology": "技术",
+        "Pricing": "价格"
+      },
+      "searchPlaceholder": "搜索主题",
+      "reset": "重置",
+      "viewResults": "查看结果",
+      "clearFilters": "清除筛选",
+      "resultNotFound": "未找到匹配的主题"
+    },
+    "theme": {
+      "recentlyAdded": "最近添加",
+      "viewAllNewThemes": "查看所有新主题",
+      "allThemes": "所有主题"
+    },
+    "submitTheme": {
+      "title": "提交主题",
+      "submitBtn": "即将推出",
+      "description": "任何人都可以向 Awesome Landing Page 提交主题。"
+    }
+  }
+}

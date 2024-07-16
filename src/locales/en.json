@@ -1,0 +1,28 @@
+{
+  "home": {
+    "title": "Explore the best landing page templates",
+    "filter": {
+      "title": "Filter",
+      "filterType": {
+        "Categories": "Categories",
+        "Technology": "Technology",
+        "Pricing": "Pricing"
+      },
+      "searchPlaceholder": "Search for a theme",
+      "reset": "reset",
+      "viewResults": "View results",
+      "clearFilters": "Clear filters",
+      "resultNotFound": "results found for themes matching"
+    },
+    "theme": {
+      "recentlyAdded": "Recently Added",
+      "viewAllNewThemes": "View all new themes",
+      "allThemes": "All Themes"
+    },
+    "submitTheme": {
+      "title": "Submit a theme",
+      "submitBtn": "Comming soon",
+      "description": "Anyone can submit a theme to awesome landing page."
+    }
+  }
+}

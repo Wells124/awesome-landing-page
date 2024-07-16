@@ -15,8 +15,11 @@ import type {
   ThemeCategory,
   ThemeTool,
 } from './themes/_types/index.ts'
+import { useTranslations } from '~/locales/index.ts'
 
 export const prerender = false
+
+const t = useTranslations(Astro.url)
 
 // with '[...page]' rest routes we'll get undefined for the first page, default that to 1
 // otherwise, try to parse the page number from the URL
@@ -42,7 +45,7 @@ const selectedCategories = Astro.url.searchParams.getAll('categories[]')
 
 // massage category data for the Filter components
 const categoryFilter: FilterGroup = {
-  title: 'Categories',
+  title: t('home.filter.filterType.Categories'),
   options: categories.map((c) => ({
     id: c.value,
     name: 'categories[]',
@@ -62,7 +65,7 @@ const selectedTools = Astro.url.searchParams.getAll('technology[]')
 
 // massage tool data for the Filter components
 const toolFilter: FilterGroup = {
-  title: 'Technology',
+  title: t('home.filter.filterType.Technology'),
   options: tools.map((t) => ({
     id: t.value,
     name: 'technology[]',
@@ -82,7 +85,7 @@ const selectedPricing = Astro.url.searchParams.getAll('price[]')
 
 // massage tool data for the Filter components
 const priceFilter: FilterGroup = {
-  title: 'Pricing',
+  title: t('home.filter.filterType.Pricing'),
   options: [...ThemePricing].map(([id, label]) => ({
     id,
     name: 'price[]',
@@ -124,7 +127,7 @@ const recentlyAddedSearch = new URLSearchParams(Astro.url.search)
 recentlyAddedSearch.append('categories[]', 'recent')
 const recentlyAddedHref = `${Astro.url.pathname}?${recentlyAddedSearch.toString()}`
 
-const mainTitle = 'Explore the best landing page templates'
+const mainTitle = t('home.title')
 ---
 
 <MainLayout
@@ -148,10 +151,10 @@ const mainTitle = 'Explore the best landing page templates'
     <Fragment slot="sidebar">
       <SidebarPanel>
         <SearchFilter
-          indexRoute="/themes/"
+          indexRoute="/"
           groups={[categoryFilter, toolFilter, priceFilter]}
           search={search}
-          searchPlaceholder="Search for a theme"
+          searchPlaceholder={t('home.filter.searchPlaceholder')}
         />
       </SidebarPanel>
       <SubmitTheme class="hidden lg:block" />
@@ -164,10 +167,13 @@ const mainTitle = 'Explore the best landing page templates'
 
           {showRecentlyAdded && recentlyAdded.length > 0 && (
             <CardGridGroup
-              title="Recently Added"
+              title={t('home.theme.recentlyAdded')}
               cta={
                 recentlyAdded.length > 3
-                  ? { href: recentlyAddedHref, text: 'View all new themes' }
+                  ? {
+                      href: recentlyAddedHref,
+                      text: t('home.theme.viewAllNewThemes'),
+                    }
                   : undefined
               }
             >
@@ -182,7 +188,7 @@ const mainTitle = 'Explore the best landing page templates'
           <CardGridGroup
             title={
               showRecentlyAdded && recentlyAdded.length > 0
-                ? 'All Themes'
+                ? t('home.theme.allThemes')
                 : undefined
             }
           >
@@ -205,11 +211,11 @@ const mainTitle = 'Explore the best landing page templates'
       ) : (
         <div class="flex flex-col items-center gap-12 pt-8 text-center sm:px-4 md:px-8 lg:px-10 lg:pt-10">
           <p>
-            <strong>0</strong> results found for themes matching{' '}
+            <strong>0</strong> {t('home.filter.resultNotFound')}{' '}
             <strong>"{search}"</strong>
           </p>
           <a href="/themes/" data-astro-prefetch class="button button-primary">
-            Clear filters
+            {t('home.filter.clearFilters')}
           </a>
         </div>
       )

@@ -9,6 +9,7 @@ fonts/
 
 # generated types
 .astro/
+astro_tmp_pages_*
 
 # dependencies
 node_modules/
