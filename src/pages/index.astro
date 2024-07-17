@@ -12,10 +12,35 @@ import SubmitTheme from './themes/_components/SubmitTheme.astro'
 import ThemeCard from './themes/_components/ThemeCard.astro'
 import type {
   ThemeAndAuthor,
-  ThemeCategory,
-  ThemeTool,
 } from './themes/_types/index.ts'
 import { useTranslations } from '~/locales/index.ts'
+// Generated with CLI
+import { getXataClient } from '~/lib/xata'
+const xata = getXataClient()
+
+// const result = await xata.db.template
+//   .select([
+//     'xata_id',
+//     'slug',
+//     'title',
+//     'body',
+//     'demoUrl',
+//     'description',
+//     'featured',
+//     'hidden',
+//     'image',
+//     'images',
+//     'paid',
+//     'publishDate',
+//     'repoUrl',
+//     // 选择关联表中的字段
+//     'authorId.*',
+//   ])
+//   .getPaginated({
+//     pagination: {
+//       size: 15,
+//     },
+//   })
 
 export const prerender = false
 
@@ -36,42 +61,42 @@ if (!currentPage || Number.isNaN(currentPage)) {
 // search term from the search/filter panel
 const search = Astro.url.searchParams.get('search')
 
-// get a list of all supported categories, this is the same list used by the zod schema
-const categories: ThemeCategory[] = await fetch(
-  `${THEMES_API_URL}/api/themes/tools`
-).then((res) => res.json().then((data) => data.themeCategories))
+const filterResult = await xata.db.dictionary
+  .select(['type', 'code', 'name'])
+  .filter({
+    $any: [{ type: 'tool' }, { type: 'category' }],
+  })
+  .getAll()
+
 // get a list of category filters applied to the request
 const selectedCategories = Astro.url.searchParams.getAll('categories[]')
 
 // massage category data for the Filter components
+const categories = filterResult.filter((c) => c.type === 'category')
 const categoryFilter: FilterGroup = {
   title: t('home.filter.filterType.Categories'),
   options: categories.map((c) => ({
-    id: c.value,
+    id: c.xata_id,
     name: 'categories[]',
-    value: c.value,
-    label: c.name,
-    selected: selectedCategories.includes(c.value),
+    value: c.code!,
+    label: c.name!,
+    selected: selectedCategories.includes(c.code!),
   })),
 }
-
-// get a list of all supported tools, this is the same list used by the zod schema
-const tools: ThemeTool[] = await fetch(
-  `${THEMES_API_URL}/api/themes/tools`
-).then((res) => res.json().then((data) => data.themeTools))
 
 // get a list of tool filters applied to the request
 const selectedTools = Astro.url.searchParams.getAll('technology[]')
 
 // massage tool data for the Filter components
+const tools = filterResult.filter((t) => t.type === 'tool')
 const toolFilter: FilterGroup = {
   title: t('home.filter.filterType.Technology'),
   options: tools.map((t) => ({
-    id: t.value,
+    id: t.xata_id,
     name: 'technology[]',
-    value: t.value,
-    label: t.name,
-    selected: selectedTools.includes(t.value),
+    value: t.code!,
+    label: t.name!,
+    selected: selectedTools.includes(t.code!),
   })),
 }
 
