@@ -1,17 +1,22 @@
 ---
 import siteInfo from '~/data/site-info.js'
 import Logo from './Logo.astro'
-import ResourcesMenu from './ResourcesMenu.astro'
-import SocialLinks from './SocialLinks.astro'
+import LanguageMenu from './LanguageMenu.astro'
 
-const socialLinks = siteInfo.socialLinks.filter((link) => !link.footerOnly)
 const siteName = siteInfo.name
+
 ---
 
 <nav class="w-full flex items-center justify-between">
-  <a href="/" data-astro-prefetch title="Home" data-home-link class="flex items-center" >
+  <a
+    href="/"
+    data-astro-prefetch
+    title="Home"
+    data-home-link
+    class="flex items-center"
+  >
     <span class="sr-only">{siteName} Logo</span>
-    <Logo class='w-8 h-8 sm:w-10 sm:h-10' />
+    <Logo class="w-8 h-8 sm:w-10 sm:h-10" />
     <span class="ml-2 text-lg sm:text-2xl">{siteName}</span>
   </a>
 
@@ -23,7 +28,7 @@ const siteName = siteInfo.name
   </div> -->
 
   <div class="hidden gap-4 sm:flex">
-    <SocialLinks links={socialLinks} />
+    <LanguageMenu />
   </div>
 </nav>
 

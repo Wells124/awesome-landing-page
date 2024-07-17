@@ -24,5 +24,10 @@
       "submitBtn": "即将推出",
       "description": "任何人都可以向 Awesome Landing Page 提交主题。"
     }
+  },
+  "header": {
+    "language": {
+      "openLanguageMenu": "切换语言"
+    }
   }
 }

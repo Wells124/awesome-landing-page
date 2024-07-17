@@ -24,5 +24,10 @@
       "submitBtn": "Comming soon",
       "description": "Anyone can submit a theme to awesome landing page."
     }
+  },
+  "header": {
+    "language": {
+      "openLanguageMenu": "Open language menu"
+    }
   }
 }
