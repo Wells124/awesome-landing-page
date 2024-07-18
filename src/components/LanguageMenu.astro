@@ -3,23 +3,30 @@ import { getLocale } from 'astro-i18n-aut'
 import ChevronIcon from '~/icons/ChevronIcon.jsx'
 import { useTranslations } from '~/locales/index.ts'
 
+// ! 每添加一个新语言，这里都要加上新语言，保证语言切换 url 的有效性
+const urlReg = /^\/(zh\/)?/
+
 const languageList = [
   {
-    href: '/',
+    base: '/',
     name: 'English',
     locale: 'en',
   },
   {
-    href: '/zh/',
+    base: '/zh/',
     name: '简体中文',
     locale: 'zh',
   },
 ]
 
 const t = useTranslations(Astro.url)
+console.log('Astro.url: ', Astro.url)
 
 const locale = getLocale(Astro.url)
 const currentLocale = languageList.find((item) => item.locale === locale)?.name
+
+// 获取当前页面的路径
+const currentPath = Astro.url.pathname
 ---
 
 <details id="resources-menu" class="group relative">
@@ -53,7 +60,7 @@ const currentLocale = languageList.find((item) => item.locale === locale)?.name
       languageList.map((item) => (
         <li>
           <a
-            href={item.href}
+            href={item.base + currentPath.replace(urlReg, '')}
             data-astro-prefetch
             class="flex items-center gap-2 rounded-md p-3 leading-none transition hover:bg-astro-dark-700 hover:text-white"
           >

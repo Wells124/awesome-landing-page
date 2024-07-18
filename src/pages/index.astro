@@ -10,37 +10,11 @@ import { paginate } from '~/helpers/paginate.js'
 import MainLayout from '~/layouts/MainLayout.astro'
 import SubmitTheme from './themes/_components/SubmitTheme.astro'
 import ThemeCard from './themes/_components/ThemeCard.astro'
-import type {
-  ThemeAndAuthor,
-} from './themes/_types/index.ts'
+import type { ThemeAndAuthor } from './themes/_types/index.ts'
 import { useTranslations } from '~/locales/index.ts'
 // Generated with CLI
 import { getXataClient } from '~/lib/xata'
 const xata = getXataClient()
-
-// const result = await xata.db.template
-//   .select([
-//     'xata_id',
-//     'slug',
-//     'title',
-//     'body',
-//     'demoUrl',
-//     'description',
-//     'featured',
-//     'hidden',
-//     'image',
-//     'images',
-//     'paid',
-//     'publishDate',
-//     'repoUrl',
-//     // 选择关联表中的字段
-//     'authorId.*',
-//   ])
-//   .getPaginated({
-//     pagination: {
-//       size: 15,
-//     },
-//   })
 
 export const prerender = false
 
@@ -120,16 +94,31 @@ const priceFilter: FilterGroup = {
   })),
 }
 
-const allThemes: ThemeAndAuthor[] = await fetch(
-  `${THEMES_API_URL}/api/themes?${Astro.url.searchParams}`
-).then((res) => res.json())
+const PAGE_SIZE = 12
+
+const templateResult = await xata.db.template
+  .select([
+    '*',
+    // 选择关联表中的字段
+    'authorId.*',
+  ])
+  .getPaginated({
+    pagination: {
+      // offset: currentPage,
+      size: PAGE_SIZE,
+    },
+  })
+
+const templates = templateResult.records as unknown as ThemeAndAuthor[]
+
+// console.log('templates', templates)
 
 // take all matching themes and create a paginated list of results
 const paginatedResults = paginate({
-  data: allThemes,
-  pageSize: 12,
+  data: templates,
+  pageSize: PAGE_SIZE,
   currentPage,
-  route: '/themes/[...page]',
+  route: '/[...page]/',
   searchParams: Astro.url.searchParams,
 })
 
@@ -145,6 +134,8 @@ const themes = page.data
 const showRecentlyAdded =
   currentPage === 1 &&
   !Array.from(Astro.url.searchParams).some(([_, value]) => !!value)
+
+//
 const recentlyAdded: ThemeAndAuthor[] = showRecentlyAdded
   ? await fetch(`${THEMES_API_URL}/api/themes/recent`).then((res) => res.json())
   : []
@@ -190,7 +181,7 @@ const mainTitle = t('home.title')
         <div class="flex flex-col items-center gap-8 pb-10 pt-8 sm:px-4 sm:pb-12 md:gap-10 md:pb-16 lg:gap-12 lg:px-8 lg:pb-20 lg:pt-10 xl:px-10">
           <h2 class="sr-only">Themes</h2>
 
-          {showRecentlyAdded && recentlyAdded.length > 0 && (
+          {/* {showRecentlyAdded && recentlyAdded.length > 0 && (
             <CardGridGroup
               title={t('home.theme.recentlyAdded')}
               cta={
@@ -208,7 +199,7 @@ const mainTitle = t('home.title')
                 ))}
               </CardGrid>
             </CardGridGroup>
-          )}
+          )} */}
 
           <CardGridGroup
             title={

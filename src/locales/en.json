@@ -8,26 +8,39 @@
         "Technology": "Technology",
         "Pricing": "Pricing"
       },
-      "searchPlaceholder": "Search for a theme",
+      "searchPlaceholder": "Search for a template",
       "reset": "reset",
       "viewResults": "View results",
       "clearFilters": "Clear filters",
-      "resultNotFound": "results found for themes matching"
+      "resultNotFound": "results found for templates matching"
     },
     "theme": {
       "recentlyAdded": "Recently Added",
-      "viewAllNewThemes": "View all new themes",
-      "allThemes": "All Themes"
+      "viewAllNewThemes": "View all new templates",
+      "allThemes": "All Templates"
     },
     "submitTheme": {
-      "title": "Submit a theme",
+      "title": "Submit a template",
       "submitBtn": "Comming soon",
-      "description": "Anyone can submit a theme to awesome landing page."
+      "description": "Anyone can submit a template to awesome landing page."
     }
   },
   "header": {
     "language": {
       "openLanguageMenu": "Open language menu"
+    }
+  },
+  "templateDetail": {
+    "btn": {
+      "getStarted": "Get started",
+      "liveDemo": "Live Demo",
+      "backToTemplates": "Back to templates"
+    },
+    "label": {
+      "cost": "Cost",
+      "createdBy": "Created by",
+      "paid": "Paid",
+      "free": "Free"
     }
   }
 }

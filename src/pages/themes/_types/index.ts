@@ -1,6 +1,5 @@
-export type ThemeAndAuthor = {
-	Theme: Theme;
-	Author: Author;
+export type ThemeAndAuthor = Theme & {
+	authorId: Author;
 };
 
 export type Theme = {

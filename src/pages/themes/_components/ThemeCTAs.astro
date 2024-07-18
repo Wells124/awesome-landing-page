@@ -1,17 +1,20 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import { THEMES_API_URL } from "~/helpers/constants.ts";
-import ExternalLinkIcon from "~/icons/ExternalLinkIcon.jsx";
-import type { ThemeAndAuthor } from "../_types/index.ts";
-export type Props = HTMLAttributes<"div"> & {
-	theme: ThemeAndAuthor;
-};
+import type { HTMLAttributes } from 'astro/types'
+import { THEMES_API_URL } from '~/helpers/constants.ts'
+import ExternalLinkIcon from '~/icons/ExternalLinkIcon.jsx'
+import type { ThemeAndAuthor } from '../_types/index.ts'
+import { useTranslations } from '~/locales/index.ts'
+export type Props = HTMLAttributes<'div'> & {
+  theme: ThemeAndAuthor
+}
 
-const { theme, class: className, ...attrs } = Astro.props;
+const { theme, class: className, ...attrs } = Astro.props
+
+const t = useTranslations(Astro.url)
 ---
 
 <div class:list={['flex flex-col gap-4', className]} {...attrs}>
-  {
+  <!-- {
     theme.Theme.sellingThroughPortal ? (
       <a
         href={new URL(`${THEMES_API_URL}/api/themes/generate-checkout?themeId=${theme.Theme.id}`)}
@@ -39,28 +42,30 @@ const { theme, class: className, ...attrs } = Astro.props;
         </a>
       )
     )
-  }
+  } -->
   {
-    !theme.Theme.paid && (
+    !theme.paid && (
       <a
-        href={theme.Theme.repoUrl}
-        class='button button-primary'
-        data-analytics-event='PDDOCXCA:0'
+        href={theme.repoUrl}
+        target="_blank"
+        class="button button-primary"
+        data-analytics-event="PDDOCXCA:0"
       >
-        <span>Get started</span>
-        <ExternalLinkIcon aria-hidden='true' />
+        <span>{t('templateDetail.btn.getStarted')}</span>
+        <ExternalLinkIcon aria-hidden="true" />
       </a>
     )
   }
   {
-    theme.Theme.demoUrl && (
+    theme.demoUrl && (
       <a
-        href={theme.Theme.demoUrl}
-        class='button'
-        data-analytics-event='DI9WVRXV:0'
+        href={theme.demoUrl}
+        target="_blank"
+        class="button"
+        data-analytics-event="DI9WVRXV:0"
       >
-        <span>Live demo</span>
-        <ExternalLinkIcon aria-hidden='true' />
+        <span>{t('templateDetail.btn.liveDemo')}</span>
+        <ExternalLinkIcon aria-hidden="true" />
       </a>
     )
   }
@@ -71,11 +76,11 @@ const { theme, class: className, ...attrs } = Astro.props;
     .querySelectorAll<HTMLElement>('[data-analytics-event]')
     .forEach((elem) => {
       if ('fathom' in window && elem.dataset.analyticsEvent) {
-        const [eventId, value = '0'] = elem.dataset.analyticsEvent.split(':');
+        const [eventId, value = '0'] = elem.dataset.analyticsEvent.split(':')
 
         elem.addEventListener('click', () => {
-          window.fathom.trackGoal(eventId, parseInt(value!));
-        });
+          window.fathom.trackGoal(eventId, parseInt(value!))
+        })
       }
-    });
+    })
 </script>
